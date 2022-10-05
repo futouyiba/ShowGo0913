@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1642818022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642818023}
+  - component: {fileID: 1642818025}
+  - component: {fileID: 1642818024}
+  m_Layer: 0
+  m_Name: ContinentalMessenger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642818023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642818022}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8875081060569260283}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642818025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642818022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43947a90870049329fac0eed6c19d029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _logicServerMode: 2
+  _nativeClientMode: 0
+  PublicParams: _dzch=035f47991c6d8916&_imei=035f47991c6d8916&_t=200&_v=10010&_app=3&_s_v=9&_s_n=RedmiNote5&_net=NETWORK_WIFI&_token=857480_200_1663726822940_e92b55db88aaa196&_c=&_at=2&_time=1663845231362
+--- !u!114 &1642818024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642818022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619753f9d9d140948c6d268ed8d5b3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  testMyInfo2Input: "{\"code\":0,\"dataInfo\":{\"background\":\"\",\"black\":false,\"bloodType\":\"\",\"chatBubbleId\":0,\"city\":\"\u5317\u4EAC\",\"clickNum\":0,\"color\":\"\",\"contractInfoBeans\":[],\"createTime\":1654591893000,\"creditLevel\":6,\"creditScore\":100000,\"currentIntoVoiceTips\":\"\",\"currentRoomInfo\":null,\"deleteUserId\":0,\"disturb\":false,\"examineIntoVoiceTips\":\"\",\"examineState\":0,\"freeNum\":1,\"friendState\":0,\"gisX\":\"\",\"gisY\":\"\",\"headPic\":\"user/0b7e7b7ba498455bbd31ba23944e09c6.png\",\"headgearId\":0,\"height\":\"\",\"integral\":0,\"integralPlay\":0,\"integrity\":100,\"labels\":\"\",\"labelsILike\":\"\",\"lastActiveTime\":1654591893405,\"levelList\":[],\"loginId\":0,\"milepostState\":false,\"newUser\":false,\"nickName\":\"\u963F\u534A\u0E05\u06F6\u2022\uFECC\u2022\u2661\",\"online\":false,\"onlineHidden\":false,\"picList\":[{\"index\":1,\"picUrl\":\"group1/M00/42/E0/wKgACmF7r1yEDPJVAAAAAGQ4M5M310.jpg\",\"verifyState\":2}],\"professional\":\"\",\"relation\":false,\"sex\":2,\"surfing\":530625,\"toFriendState\":0,\"userDesc\":\"\u6211\u4E5F\u592A\u53EF\u7231\u4E86\u5427\uFF01\",\"userId\":840254,\"userRevenueGoodsList\":[],\"userRoomInfo\":null,\"userState\":1,\"userType\":2,\"voiceTime\":0,\"weight\":\"\"},\"timestamp\":1663849622149}"
+--- !u!1 &8875081060569260039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8875081060569260283}
+  - component: {fileID: 8594542398719399829}
+  - component: {fileID: 2773741503108840832}
+  - component: {fileID: 1001635209}
+  m_Layer: 0
+  m_Name: NetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8875081060569260283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875081060569260039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.32, y: 0, z: 3.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1642818023}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8594542398719399829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875081060569260039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d9f6171aa004343889d6e541b36225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  runInBackground: 1
+  autoStartServerBuild: 1
+  serverTickRate: 30
+  offlineScene: Assets/Scenes/ShowGoOffline.unity
+  onlineScene: Assets/Scenes/ShowGoLiveFork.unity
+  transport: {fileID: 2773741503108840832}
+  networkAddress: 120.27.233.235
+  maxConnections: 9999
+  authenticator: {fileID: 0}
+  playerPrefab: {fileID: 314624297861481886, guid: ab5b6f6d1160844679896d0d184c2a55, type: 3}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
+  spawnPrefabs: []
+  bIsServer: 1
+  autoServerAddress: 120.27.233.235
+  updateReconnectInterval: 0
+  checkAccumulatedTime: 0
+--- !u!114 &2773741503108840832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875081060569260039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  FastResend: 2
+  CongestionWindow: 0
+  SendWindowSize: 4096
+  ReceiveWindowSize: 4096
+  MaxRetransmit: 40
+  NonAlloc: 1
+  MaximizeSendReceiveBuffersToOSLimit: 1
+  ReliableMaxMessageSize: 298449
+  UnreliableMaxMessageSize: 1199
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
+--- !u!114 &1001635209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875081060569260039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edaa4fcb4304c1ebc4a452a50723a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 8594542398719399829}
+  currentUser: 50000
+  offsetX: 0
+  offsetY: 0
