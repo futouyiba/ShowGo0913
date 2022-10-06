@@ -12,20 +12,10 @@ namespace BuildHelper
         {
             Debug.Log($"test preExport here");
             //build Bolts AOT
-            try
-            {
-                AotPreBuilder.GenerateLinker();
-                AotPreBuilder.GenerateStubScript();
-            }
-            catch (Exception ex)
-            {
-                Debug.LogException(ex);
-                AotPreBuilder.DeleteLinker();
-                AotPreBuilder.DeleteStubScript();
-            }
+            AotPreBuilder.PreCloudBuild();
             //since addressable is handled by unity cloud, do nothing here
-            
-            
+
+
         }
         
         
