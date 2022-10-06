@@ -45,7 +45,8 @@ namespace ShowGo
 
         public int GetRandomAprcId()
         {
-            return Random.Range(0, CharacterPrefabs.Count);
+            var randAprcId= Random.Range(0, CharacterPrefabs.Count);
+            return CharacterPrefabs.ElementAt(randAprcId).Key;
         }
 
     }

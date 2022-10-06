@@ -107,6 +107,7 @@ namespace ShowGo
 
         public string PublicParams = null;
         public MyInfo _myInfo;
+        public int savedMyAprcId = -1;
 
         public async void Native2UnityMsg(string msg)
         {
@@ -328,13 +329,23 @@ namespace ShowGo
             //todo logic server add aprcId @futou
             var cfg = await AssetCache.Instance.GetAsset<ShowGoPlayerCfg>("Cfg/ShowGoPlayerCfg");
             Debug.Log($"cfg is {cfg}");
-            var randomAprcId = cfg.GetRandomAprcId();
-            Debug.Log($"random aprc id is {randomAprcId}");
+            if (savedMyAprcId > 0)
+            {
+                
+            }
+            else
+            {
+                var randomAprcId = cfg.GetRandomAprcId();
+                savedMyAprcId = randomAprcId;
+            }
+            
+
+            Debug.Log($"random aprc id is {savedMyAprcId}");
             var networkIdentity = NetworkClient.localPlayer;
             Debug.Log($"network identity is {networkIdentity}");
             var localPlayer = networkIdentity.GetComponent<ShowGoPlayer>();
             Debug.Log($"local player is {localPlayer}");
-            localPlayer.CmdSetAprcId(randomAprcId);
+            localPlayer.CmdSetAprcId(savedMyAprcId);
             if(nickName!=null) localPlayer.InitName(nickName);
 
         }
