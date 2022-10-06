@@ -144,7 +144,7 @@ namespace ZEGO
 
         private bool isAuxChannel = false;
 
-        private string playStreamId = "0010";
+        private string playStreamId = "";
 
         public void ResetSDKDefaultState()//恢复到SDK渲染视频图像时,默认对mainTexture/uvRect的操作状态
         {

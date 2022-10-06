@@ -618,6 +618,15 @@ namespace ZEGO
                 if (config == null)
                 {
                     error_code = IExpressRoomInternal.zego_express_login_room(roomId, zegoUser, IntPtr.Zero);
+                    // if (!error_code.ToString().EndsWith("0"))
+                    // {
+                    //     this.LoginRoom(roomId, user, new ZegoRoomConfig()
+                    //     {
+                    //         isUserStatusNotify = false,
+                    //         maxMemberCount = 1000,
+                    //         token = "73ecb5e3e69aa811ce98c5ea40a09a12"
+                    //     });
+                    // }
                     Debug.Log("LoginRoom ZegoRoomConfig is null");
                 }
                 else

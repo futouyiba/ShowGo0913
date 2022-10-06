@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 303658674}
-  m_IndirectSpecularColor: {r: 0.00021061381, g: 0.00041830685, b: 0.0029473417, a: 1}
+  m_IndirectSpecularColor: {r: 0.00042699964, g: 0.00044063444, b: 0.0025059008, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1421,11 +1421,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3032055713523618235, guid: bccd4414159a64c4ca277733127301bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bccd4414159a64c4ca277733127301bf, type: 3}
 --- !u!4 &668765898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5207964892729560831, guid: bccd4414159a64c4ca277733127301bf, type: 3}
+  m_PrefabInstance: {fileID: 668765897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &668765899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8964907092461948516, guid: bccd4414159a64c4ca277733127301bf, type: 3}
+  m_PrefabInstance: {fileID: 668765897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &668765900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668765899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4f94edf4c441c28c3f5594795b909c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &668765902 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7537105440397390361, guid: bccd4414159a64c4ca277733127301bf, type: 3}
   m_PrefabInstance: {fileID: 668765897}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &685729667
@@ -3678,6 +3701,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3540216289516422233, guid: 083f1bab12184de4cb8af2cfb96932fa, type: 3}
   m_PrefabInstance: {fileID: 1614951967}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1698066439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698066441}
+  - component: {fileID: 1698066440}
+  m_Layer: 0
+  m_Name: ShowGoZegoPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1698066440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698066439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6371185a671e42eea0ffb306fed0eb0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zegoAppSign: cb6616491e3edc0e407ebc804f6f6dc124ea200ed4953ff6e90121f500ba0acc
+  zegoAppId: 1666228805
+  publishStreamID: 0010
+  remoteVideoPlane: {fileID: 668765902}
+  remoteVideoSurface: {fileID: 0}
+  roomID: 0010
+--- !u!4 &1698066441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698066439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.794061, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1718794169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4188,6 +4260,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3540216289516422233, guid: 083f1bab12184de4cb8af2cfb96932fa, type: 3}
   m_PrefabInstance: {fileID: 1831435359}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1861130940 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4477643459709547797, guid: b0f81f9eb00afc84f980c9b279a74e75, type: 3}
+  m_PrefabInstance: {fileID: 1373038451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &1861130945
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861130940}
+  m_Enabled: 1
 --- !u!1 &1871011313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4209334417469857507, guid: 083f1bab12184de4cb8af2cfb96932fa, type: 3}
@@ -4808,7 +4893,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6289066045867000593}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: db3251d3a35c34b49969cb58a6f87430, type: 3}

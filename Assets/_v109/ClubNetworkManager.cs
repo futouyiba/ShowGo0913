@@ -16,7 +16,6 @@ namespace ShowGo
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
-
             if (conn.identity == null)
             {
                 Debug.LogWarning("on server disconnect but conn has no identity");
@@ -27,27 +26,41 @@ namespace ShowGo
             if (showGoPlayer == null)
             {
                 Debug.LogWarning("on server disconnect but identity has no show go player");
-
                 return;
             }
+
             
+            
+            // do not remove the net player when player drops out,
+            // NetRemoveUser(showGoPlayer);
+        }
+
+        /// <summary>
+        /// used when the frozen user actually is considered as a quited/ dropped player.
+        /// from mq/ android player/ http request, or from our product logic
+        /// </summary>
+        /// <param name="showGoPlayer"></param>
+        private void NetRemoveUser(ShowGoPlayer showGoPlayer)
+        {
             DOTween.KillAll(showGoPlayer.transform);
+
             var userIdToRemove = showGoPlayer.UserId;
             SceneShowgoMgr.Instance.RemoveUser(showGoPlayer.UserId);
             foreach (var networkConnectionToClient in NetworkServer.connections.Values)
             {
-             var observerIdentity = networkConnectionToClient.identity;
-             if (observerIdentity == null)
-                 continue;
-             var observerShowGoPlayer = observerIdentity.GetComponent<ShowGoPlayer>();
-             if (observerShowGoPlayer == null)
-             {
-                 continue;
-             }
-             observerShowGoPlayer.CleanUpUIForOtherPlayer(userIdToRemove);
-            }
-            base.OnServerDisconnect(conn);
+                var observerIdentity = networkConnectionToClient.identity;
+                if (observerIdentity == null)
+                    continue;
+                var observerShowGoPlayer = observerIdentity.GetComponent<ShowGoPlayer>();
+                if (observerShowGoPlayer == null)
+                {
+                    continue;
+                }
 
+                observerShowGoPlayer.CleanUpUIForOtherPlayer(userIdToRemove);
+            }
+
+            // base.OnServerDisconnect(conn);
         }
 
         // public override async void OnClientDisconnect()
@@ -74,14 +87,15 @@ namespace ShowGo
                 networkAddress = autoServerAddress;
                 StartClient();
             }
+
             base.Start();
 
             // else
             // {
-                // if (!NetworkServer.active)
-                // {
-                //     StartServer();
-                // }
+            // if (!NetworkServer.active)
+            // {
+            //     StartServer();
+            // }
             // }
         }
 
