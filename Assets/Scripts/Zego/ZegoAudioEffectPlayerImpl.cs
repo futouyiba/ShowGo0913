@@ -4,7 +4,7 @@ using AOT;
 using static ZEGO.ZegoExpressEngineImpl;
 using static ZEGO.ZegoImplCallChangeUtil;
 using static ZEGO.ZegoCallBackChangeUtil;
-using System.Threading;
+
 namespace ZEGO
 {
     public class ZegoAudioEffectPlayerImpl : ZegoAudioEffectPlayer

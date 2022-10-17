@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
 public class GPUSkinningPlayerMono : MonoBehaviour
@@ -23,7 +21,7 @@ public class GPUSkinningPlayerMono : MonoBehaviour
 
     [HideInInspector]
     [SerializeField]
-    private int defaultPlayingClipIndex = 0;
+    public int defaultPlayingClipIndex = 0;
 
     [HideInInspector]
     [SerializeField]
@@ -115,11 +113,14 @@ public class GPUSkinningPlayerMono : MonoBehaviour
 
     private void OnValidate()
     {
+        //可以将此段代码隐藏，因为onvalidate是为了在inspector面板调试使用，这里用不上
+        /*
         if (!Application.isPlaying)
         {
-            Init();
-            Update_Editor(0);
+           // Init();
+          //  Update_Editor(0);
         }
+        */
     }
 #endif
 

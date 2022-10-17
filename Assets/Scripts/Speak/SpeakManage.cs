@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,26 +6,26 @@ namespace ET
     public class SpeakManage : MonoBehaviour
     {
         public float interval = 3000f;
-        [Tooltip("×î´ó¹·µÄÊýÁ¿")] [SerializeField] private int dog_Max;
-        [Tooltip("¿ÉÍ¬Ê±ÏÔÊ¾¼¸¸ö·¿¼ä")] [SerializeField] private int show_Max = 5;
+        [Tooltip("ï¿½ï¿½ó¹·µï¿½ï¿½ï¿½ï¿½ï¿½")] [SerializeField] private int dog_Max;
+        [Tooltip("ï¿½ï¿½Í¬Ê±ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")] [SerializeField] private int show_Max = 5;
 
-        [Tooltip("×îÐ¡ÏÔÊ¾Ê±¼ä")] [SerializeField] private int Min_duration;
-        [Tooltip("×î´óÏÔÊ¾Ê±¼ä")] [SerializeField] private int Max_duration;
-        [Tooltip("×î´óÏÔÊ¾ÁÄÌìµ¯´°")] [SerializeField] private int Max_Chat;
+        [Tooltip("ï¿½ï¿½Ð¡ï¿½ï¿½Ê¾Ê±ï¿½ï¿½")] [SerializeField] private int Min_duration;
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ê±ï¿½ï¿½")] [SerializeField] private int Max_duration;
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ìµ¯ï¿½ï¿½")] [SerializeField] private int Max_Chat;
 
-        [Tooltip("»­²¼")] public RectTransform uiCan;
-        [Tooltip("µ¯´°Ô¤ÖÆÌå")] public GameObject uiSpeak;
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½")] public RectTransform uiCan;
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½")] public GameObject uiSpeak;
 
-        [Tooltip("¹·µÄÔ¤ÖÆÌå")] [SerializeField] private List<GameObject> Dog = new List<GameObject>();
-        [Tooltip("µ±Ç°Ê¹ÓÃµÄ·¿¼ä")] private int roomSpeakID = 1;
-        //[Tooltip("·¿¼äÑùÊ½Í¼Æ¬")] [SerializeField] private List<GameObject> room_Sprite = new List<GameObject>();
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½")] [SerializeField] private List<GameObject> Dog = new List<GameObject>();
+        [Tooltip("ï¿½ï¿½Ç°Ê¹ï¿½ÃµÄ·ï¿½ï¿½ï¿½")] private int roomSpeakID = 1;
+        //[Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½Í¼Æ¬")] [SerializeField] private List<GameObject> room_Sprite = new List<GameObject>();
 
-        //´æ´¢³¡¾°ÖÐËùÓÐ¹·
+        //ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½
         [SerializeField] private List<Speak> list_DogSpeak = new List<Speak>();
 
-        //ÐèÒªÏÔÊ¾ÁÄÌì¿òµÄ
+        //ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         private List<Speak> show_Speak = new List<Speak>();
-        //ÐèÒª¹Ø±ÕÁÄÌì¿òµÄ
+        //ï¿½ï¿½Òªï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         private List<Speak> remove_Speak = new List<Speak>();
 
         void Start()
@@ -100,7 +99,7 @@ namespace ET
 
         private void LateUpdate()
         {
-            //ÅÐ¶ÏÏÔÊ¾ÁÐ±í£¬ÊÇ·ñÂúÔ±
+            //ï¿½Ð¶ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ô±
             if (show_Speak.Count < show_Max)
                 Add_Show();
         }
@@ -130,7 +129,7 @@ namespace ET
         }
 
         int i = 0;
-        //¸øÏÔÊ¾ÁÐ±íÌí¼Ó¶ÔÏó
+        //ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
         private void Add_Show() 
         {
             if (list_DogSpeak.Count < 3) return;
@@ -159,13 +158,13 @@ namespace ET
 
 
 
-        #region ²âÊÔ·¢ÑÔ¹¦ÄÜ
+        #region ï¿½ï¿½ï¿½Ô·ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½
         string str = "";
 
         private void OnGUI()
         {
             str = GUI.TextField(new Rect(50, 300, 300, 100), str);
-            if (GUI.Button(new Rect(50, 400, 300, 60), "·¢ÑÔ"))
+            if (GUI.Button(new Rect(50, 400, 300, 60), "ï¿½ï¿½ï¿½ï¿½"))
             {
                 for (int i = 0; i < Max_Chat; i++)
                 {

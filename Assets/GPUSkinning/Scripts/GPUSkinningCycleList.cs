@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GPUSkinningCycleList<T>
+﻿public class GPUSkinningCycleList<T>
 {
     private GPUSkinningBetterList<T> list = null;
 

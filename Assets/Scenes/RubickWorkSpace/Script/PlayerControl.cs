@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
@@ -14,24 +13,24 @@ namespace ET
     }
     public struct PlayerInfo
     {
-        //ъ@мФрБ╬мйг©иртлМ╪спео╒╣дё╛╛Fтз╬мр╩┌─н╩жц
+        //О©╫@О©╫О©╫О©╫О©╫О©╫О©╫г©О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫дёО©╫О©╫FО©╫з╬О©╫р╩О©╫О©╫н╩О©╫О©╫
         public Vector3 TargetPos;
     }
     public class PlayerControl : NetworkBehaviour
     {
 
-        public Dictionary<uint, int> ChatRoomPuppyInfos = new Dictionary<uint, int>();//╟Э╨╛кЫспсОрТ╥©дзмФ╪р╣дidрт╪╟╤тс╕╣д╥©╪Д╨е
-        public Dictionary<int, RoomInfo> ChatRoomInfos = new Dictionary<int, RoomInfo>();//╟Э╨╛кЫспсОрТ╥©╨ерт╪╟╥©╪Дпео╒ё╛вН╨Сс╕╦ц╡╩╥еуБюО╟и║╜║╜
+        public Dictionary<uint, int> ChatRoomPuppyInfos = new Dictionary<uint, int>();//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫р╣О©╫idО©╫т╪О©╫О©╫О©╫с╕О©╫д╥О©╫О©╫О©╫О©╫
+        public Dictionary<int, RoomInfo> ChatRoomInfos = new Dictionary<int, RoomInfo>();//О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫т╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫О©╫с╕О©╫ц╡О©╫О©╫О©╫О©╫О©╫О©╫О©╫и║О©╫О©╫О©╫
 
-        public Dictionary<uint, PlayerInfo> PuppyInfos = new Dictionary<uint, PlayerInfo>();//сп©у╦дЁивж╣Д
+        public Dictionary<uint, PlayerInfo> PuppyInfos = new Dictionary<uint, PlayerInfo>();//О©╫п©у╦дЁО©╫О©╫ж╣О©╫
         public float InterestRange = 1f;
 
-        [SerializeField] private List<Button> EnterChatRoomButtons;//╢кн╙х╗ркж╝╪фё╛╪схК╥©╪Д╡╩йгуБяЫ╦Це╤
+        [SerializeField] private List<Button> EnterChatRoomButtons;//О©╫О©╫н╙х╗О©╫О©╫ж╝О©╫фёО©╫О©╫О©╫О©╫К╥©О©╫Д╡╩О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫е╤
 
         // Start is called before the first frame update
         void Start()
         {
-            //ртобн╙╡БйткЫсц
+            //О©╫О©╫О©╫О©╫н╙О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
             ChatRoomInfos.Add(1, new RoomInfo { RoomName = "Room1", PlayerNumber = 0, Locked = false });
             ChatRoomInfos.Add(2, new RoomInfo { RoomName = "Room2", PlayerNumber = 0, Locked = false });
             ChatRoomInfos.Add(3, new RoomInfo { RoomName = "Room3", PlayerNumber = 0, Locked = true });
@@ -61,7 +60,7 @@ namespace ET
         public void RpcUpdatePlayerInfo(List<uint> LocalPuppyInfos)
         {
 
-            NetworkClient.localPlayer.GetComponent<Puppy>().LocalPuppyInfos = LocalPuppyInfos;//╢кжпн╩жцпео╒╣Усц⌡]спё╛л╚ю╖акох╡╩╦дак 0907к╞пяакхлм╢╦дак
+            NetworkClient.localPlayer.GetComponent<Puppy>().LocalPuppyInfos = LocalPuppyInfos;//О©╫О©╫О©╫О©╫н╩О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫ц⌡]О©╫пёО©╫л╚О©╫О©╫О©╫О©╫О©╫х╡О©╫О©╫О©╫О©╫О©╫ 0907к╞О©╫О©╫О©╫О©╫О©╫О©╫м╢О©╫О©╫О©╫О©╫
 
         }
 
@@ -82,7 +81,7 @@ namespace ET
         [TargetRpc]
         public void TargetUpdateChatRoomPlayerInfo(NetworkConnection conn, List<uint> ids, List<int> rooms, List<RoomInfo> infos, List<int> allrooms)
         {
-            //пб╫Ью╢╣дхкц╩╥╗╩Я╣цж╝г╟ря╬╜тзсОрТ╥©╪ДюО╣дмФ╪рпео╒ё╛кЫртр╙кШбХ╣д╧э╥ЧнЯфВр╙р╩обря╬╜тз╥©╪ДюО╣дп║╧╥ё╛бХ╣д╡нйЩ╡╩хц╢Ьвж╣Дё╛╬мкШбХ╣д╡ПЁиа╫╦Жап╠Мю╢╢╚ё╛кЁпР╬сх╩ц╩сп╠╩╢Рбр
+            //О©╫б╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ц╩О©╫О©╫О©╫О©╫О©╫ж╝г╟О©╫я╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒О©╫О©╫О©╫О©╫О©╫О©╫р╙О©╫О©╫О©╫О©╫д╧э╥О©╫О©╫О©╫О©╫О©╫р╙р╩О©╫О©╫О©╫я╬О©╫О©╫з╥О©╫О©╫О©╫О©╫О©╫О©╫п║О©╫О©╫О©╫О©╫О©╫О©╫д╡О©╫О©╫О©╫О©╫О©╫О©╫ц╢О©╫О©╫ж╣Дё╛О©╫О©╫О©╫О©╫О©╫О©╫д╡О©╫О©╫О©╫О©╫О©╫О©╫О©╫п╠О©╫О©╫О©╫О©╫О©╫О©╫О©╫кЁО©╫О©╫О©╫х╩ц╩О©╫п╠О©╫О©╫О©╫О©╫О©╫
             Dictionary<uint, int> t = new Dictionary<uint, int>();
             for (int i = 0; i < ids.Count; i++) { t[ids[i]] = rooms[i]; }
             NetworkClient.localPlayer.GetComponent<Puppy>().PlayerControl.ChatRoomPuppyInfos = t;
@@ -99,7 +98,7 @@ namespace ET
             {
                 if (i == id.netId) { return; }
             }
-            RpcAddChatRoomPlayerInfo(id, roomId);//уБхк╫Ь╥©╪Дак╦Фкъ╢С╪рё╛кШм╥ио©иртЁЖож╥©╪Д©╗ф╛ак
+            RpcAddChatRoomPlayerInfo(id, roomId);//О©╫О©╫О©╫к╫О©╫О©╫О©╫О©╫О©╫О©╫к╦О©╫О©╫ъ╢О©╫рёО©╫О©╫О©╫м╥О©╫о©О©╫О©╫тЁО©╫О©╫ж╥О©╫О©╫Д©╗ф╛О©╫О©╫
         }
 
         [ClientRpc]
@@ -117,7 +116,7 @@ namespace ET
         {
             foreach (uint i in ChatRoomPuppyInfos.Keys)
             {
-                if (i == id) { RpcDelChatRoomPlayerInfo(id); return; }//ур╣╫акхцкШ╧Ж╣╟ё╛ур╡╩╣╫нчйб╥╒иЗ
+                if (i == id) { RpcDelChatRoomPlayerInfo(id); return; }//О©╫р╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫р╡О©╫О©╫О©╫О©╫О©╫О©╫б╥О©╫О©╫О©╫
             }
 
         }
@@ -150,7 +149,7 @@ namespace ET
                 if (owner == id)
                 {
                     LeavingPlayer.RoomCardPoolList[LeavingPlayer.ActiveCardAndOwner[id]].SetActive(false);
-                    //LeavingPlayer.ActiveCardAndOwner.Remove(id); //╡╩©иртуБяЫе╤ё╛ж╩дэ╣хп╜Ёл╟якЭ╦и╣Так╬мйгк╣ё╛нрр╡кШдлдл╣д╡╩ж╙╣юн╙й╡ц╢ё╛╣╚йг╠╗╢М╦Фкънр╨мп╜Ёлсп╧ь╟иё╛╤Ьгрв╒╣Т╬м©иртуЩЁёткппакдСё╛бХ╣д
+                    //LeavingPlayer.ActiveCardAndOwner.Remove(id); //О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫е╤О©╫О©╫ж╩О©╫э╣О©╫п╜О©╫л╟О©╫О©╫О©╫О©╫и╣О©╫О©╫к╬О©╫О©╫О©╫к╣О©╫О©╫О©╫О©╫р╡О©╫О©╫О©╫О©╫О©╫л╣д╡О©╫ж╙О©╫О©╫н╙й╡ц╢О©╫О©╫О©╫О©╫О©╫г╠О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫р╨О©╫п╜О©╫О©╫О©╫п╧ь╟иёО©╫О©╫О©╫О©╫О©╫в╒О©╫О©╫О©╫м©О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
                 }
                 Debug.Log("RoomCardRemoved");
             }

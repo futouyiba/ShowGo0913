@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Mirror;
 
@@ -73,7 +71,7 @@ namespace ET
                         if (InputField.text == CommendList[0])
                         {
                             //CameraState.CameraFSMDJ();
-                            Debug.Log("ºÜ±§Ç¸×Ô¼º¿´DJ¹¦ÄÜÒÑ¾­ËûÂèµÄÉ¾³ýÁË");
+                            Debug.Log("ï¿½Ü±ï¿½Ç¸ï¿½Ô¼ï¿½ï¿½ï¿½DJï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½");
                         }
                         else if (InputField.text == CommendList[1])
                         {
@@ -83,7 +81,7 @@ namespace ET
                         else if (InputField.text == CommendList[2])
                         {
                             //CameraState.CameraFSMScreen();
-                            Debug.Log("ºÜ±§Ç¸×Ô¼º¿´ÆÁÄ»¹¦ÄÜÒÑ¾­ËûÂèµÄÉ¾³ýÁË");
+                            Debug.Log("ï¿½Ü±ï¿½Ç¸ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½");
                         }
                         else if (InputField.text == CommendList[3])
                         {

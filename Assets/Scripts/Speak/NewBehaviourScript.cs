@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -26,7 +25,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnGUI()
     {
-        if (GUI.Button(new Rect(300, 100, 200, 200), "ÏÂÒ»×é"))
+        if (GUI.Button(new Rect(300, 100, 200, 200), "ï¿½ï¿½Ò»ï¿½ï¿½"))
         {
             if (A > listA.Count - 1) A = 0;
             if (B > listB.Count - 1) B = 0;

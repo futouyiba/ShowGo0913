@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -15,9 +13,9 @@ namespace ET
         // Start is called before the first frame update
         void Start()
         {
-            for(var i = 0; i < width*2; i+=2)
+            for(int i = 0; i < width; i+=1)
             {
-                for(var j = 0; j < length*2; j+=2)
+                for(int j = 0; j < length; j+=1)
                 {
                     Instantiate(xiugou, new Vector3(i, 0, j), Quaternion.identity);
                     

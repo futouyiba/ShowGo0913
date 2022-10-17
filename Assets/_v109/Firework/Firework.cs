@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Firework : MonoBehaviour
@@ -8,12 +6,12 @@ public class Firework : MonoBehaviour
     private ParticleSystem.EmissionModule EmissionModule;
     private ParticleSystem.MainModule MainModule;
 
-    private float MaxRate = 200f;//Ã¿ÃëÖÓÕý³£²úÉúµÄÁ£×ÓÊýÁ¿£¬Öð½¥Ôö¼ÓËü£¬¶ø²»ÊÇÐÞ¸Äduration
+    private float MaxRate = 200f;//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½duration
     private float MinRate = 0f;
 
-    // ´ïµ½MaxRateËùÐèÊ±¼ä  
+    // ï¿½ïµ½MaxRateï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½  
     public float SpeedUpTime = 3f;
-    // ¿ªÊ¼ßÚ»¨µÄÊ±¼ä  
+    // ï¿½ï¿½Ê¼ï¿½Ú»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½  
     private float FireworkStartTime;
 
 
@@ -45,12 +43,12 @@ public class Firework : MonoBehaviour
     public void StartFirework()
     {
         //this.transform.localPosition = new Vector3(0, 0, 0);
-        //FireworkParticle.Clear();¸ÄÁËÑÓ³ÙÏûÊ§
+        //FireworkParticle.Clear();ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ê§
         float r = Random.Range(0.8f, 1.6f);
         MainModule.startSpeed = new ParticleSystem.MinMaxCurve(7*r, 10*r);
         EmissionModule.rateOverTime = MinRate;
         FireworkParticle.Play();
-        //this.transform.localScale = new Vector3(1, 1, Random.Range(0.8f,1.6f));//²»ÖªµÀÎªÊ²Ã´Õâ¸ö»á±ä£¬ÕâÁ½¾ä±Ø¼ÓÉÏ²»È»ÐÎ±ä
+        //this.transform.localScale = new Vector3(1, 1, Random.Range(0.8f,1.6f));//ï¿½ï¿½Öªï¿½ï¿½ÎªÊ²Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ï²ï¿½È»ï¿½Î±ï¿½
 
         FireworkStartTime = Time.time;
     }
@@ -58,7 +56,7 @@ public class Firework : MonoBehaviour
     public void EndFirework()
     {
         FireworkParticle.Stop();
-        //this.transform.localScale = new Vector3(1, 1, 1);//²»ÖªµÀÎªÊ²Ã´Õâ¸ö»á±ä£¬ÕâÁ½¾ä±Ø¼ÓÉÏ²»È»ÐÎ±ä
+        //this.transform.localScale = new Vector3(1, 1, 1);//ï¿½ï¿½Öªï¿½ï¿½ÎªÊ²Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ï²ï¿½È»ï¿½Î±ï¿½
 
     }
 

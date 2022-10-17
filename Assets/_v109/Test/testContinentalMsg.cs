@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ET.Utility;
-using LC.Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using ShowGo;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -205,6 +205,13 @@ namespace _v109.Test
             };
             var msg = NativeUtility.MakeOp(changed);
             ContinentalMessenger.Instance.Native2UnityMsg(msg);
+        }
+
+
+        [Button("enumtostring")]
+        public void EnumtoString()
+        {
+            Debug.Log(ContinentalMessenger.LogicServerMode.LeanMock.ToString());
         }
     }
 }

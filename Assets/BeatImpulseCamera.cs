@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ namespace ET
         [SerializeField] protected bool bRespondSnare = true;
         [SerializeField] protected bool bRespondHitHat = true;
 
-        //信号强度由strength和音量大小一同控制
+        //锟脚猴拷强锟斤拷锟斤拷strength锟斤拷锟斤拷锟斤拷锟斤拷小一同锟斤拷锟斤拷
         [SerializeField, Range(0.1f, 3f)] protected float strength = 1f;
 
         [SerializeField] private float AverageGain;
@@ -28,7 +26,7 @@ namespace ET
 
             impulseSource = GetComponent<CinemachineImpulseSource>();
             
-            //todo : 检查这里是否需要，用到了BeatDetection
+            //todo : 锟斤拷锟斤拷锟斤拷锟斤拷欠锟斤拷锟揭拷锟斤拷玫锟斤拷锟紹eatDetection
             /*
             GetComponent<BeatDetection>().CallBackFunction = (info =>
             {
@@ -73,7 +71,7 @@ namespace ET
         // Update is called once per frame
         void FixedUpdate()
         {
-            //获取当前的音量大小
+            //锟斤拷取锟斤拷前锟斤拷锟斤拷锟斤拷锟斤拷小
             GetComponent<AudioSource>().GetSpectrumData(OutputData, 0, FFTWindow.BlackmanHarris);
             float sum = 0f;
             foreach (var i in OutputData)

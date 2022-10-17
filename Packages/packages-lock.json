@@ -1,21 +1,5 @@
 {
   "dependencies": {
-    "com.leancloud.realtime": {
-      "version": "https://github.com/leancloud/csharp-sdk-upm.git#realtime-0.10.13",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.leancloud.storage": "https://github.com/leancloud/csharp-sdk-upm.git#storage-0.10.13"
-      },
-      "hash": "2413b4ee500b8e878cea377361347d4f9864918b"
-    },
-    "com.leancloud.storage": {
-      "version": "https://github.com/leancloud/csharp-sdk-upm.git#storage-0.10.13",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "5913319418b6846bf44e19ef35eaeeb6fdc5c7ac"
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -28,12 +12,12 @@
       "source": "builtin",
       "dependencies": {}
     },
-    "com.unity.addressables": {
-      "version": "1.18.19",
+    "com.unity.addressables.cn": {
+      "version": "1.19.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.19.2",
+        "com.unity.scriptablebuildpipeline": "1.19.5",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -69,6 +53,15 @@
       },
       "url": "https://packages.unity.cn"
     },
+    "com.unity.cloudcontentdelivery": {
+      "version": "1.1.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "1.7.2"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,
@@ -76,6 +69,13 @@
       "dependencies": {
         "com.unity.services.core": "1.0.1"
       },
+      "url": "https://packages.unity.cn"
+    },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.cn"
     },
     "com.unity.ext.nunit": {
@@ -169,7 +169,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.19.2",
+      "version": "1.19.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -307,6 +307,19 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {}
+    },
+    "com.unity.modules.autostreaming": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.assetbundle": "1.0.0",
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
+      }
     },
     "com.unity.modules.cloth": {
       "version": "1.0.0",

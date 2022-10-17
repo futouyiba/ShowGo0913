@@ -1,5 +1,4 @@
-﻿using System;
-using Mirror;
+﻿using Mirror;
 using ShowGo;
 using Sirenix.OdinInspector;
 

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -7,7 +6,7 @@ namespace ET
 {
     public class DogMove : MonoBehaviour
     {
-        [Tooltip("ËÙ¶È")][SerializeField]private float speed;
+        [Tooltip("ï¿½Ù¶ï¿½")][SerializeField]private float speed;
 
         private bool isMove = true;
         private Tween tw;
@@ -47,7 +46,7 @@ namespace ET
         }
 
 
-        // ÔÝÍ£ÒÆ¶¯
+        // ï¿½ï¿½Í£ï¿½Æ¶ï¿½
         //public void PlayStopMove()
         //{
         //    tw.Kill();

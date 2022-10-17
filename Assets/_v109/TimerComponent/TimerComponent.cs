@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Model;
-using UnityEngine;
 using Utility;
 
 public struct Timer

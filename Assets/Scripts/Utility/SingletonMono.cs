@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
-using Mirror;
+﻿using Mirror;
 using UnityEngine;
 
 namespace Utility
@@ -40,7 +38,7 @@ namespace Utility
             {
                 if (!_instance)
                 {
-                    Debug.LogError($"instance does not exists, config in the scene");
+                    Debug.LogError($"instance does not exists for {typeof(T).Name}, config in the scene");
                 }
                 return _instance;
             }

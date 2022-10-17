@@ -1,2 +1,4 @@
 Assets/Font/MSJH7150.asset filter=lfs diff=lfs merge=lfs -text
 Assets/Plugins/Zego/iOS/iphoneos/ZegoExpressEngine.framework/ZegoExpressEngine filter=lfs diff=lfs merge=lfs -text
+Assets/Plugins/iOS/ZegoExpressEngine.framework filter=lfs diff=lfs merge=lfs -text
+Assets/Plugins/iOS/ZegoExpressEngine.framework/ZegoExpressEngine filter=lfs diff=lfs merge=lfs -text

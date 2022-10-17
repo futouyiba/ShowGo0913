@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Bolt;
 using ShowGo;
 using Sirenix.OdinInspector;
@@ -21,6 +19,13 @@ public class testCharPrefab : MonoBehaviour
     {
         playerScript.OnAprcIdChanged(-1, id);
     }
+
+    [Button("RoomLvChanged")]
+    public void testRoomLvChange(int lv)
+    {
+        playerScript.OnRoomLvChanged(-1, lv);
+    }
+        
 
     [Button("MoveEnd")]
     public void MoveEnd()

@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public enum GPUSkinningShaderType
+﻿public enum GPUSkinningShaderType
 {
 	Unlit, 
 	StandardSpecular, 

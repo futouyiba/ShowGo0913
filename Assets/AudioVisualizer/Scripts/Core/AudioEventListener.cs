@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 
 /// <summary>
 /// Listen for beats in the given frequencyRange.

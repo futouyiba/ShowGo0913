@@ -20,6 +20,11 @@ MonoBehaviour:
   - m_GUID: bde98b24fd28f564791a8f7a89698cbf
     m_Address: Cfg/ShowGoPlayerCfg
     m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+  - m_GUID: 261c8acb649b61a448f83800d2239e5c
+    m_Address: Cfg/AprcCfg
+    m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e26e08f065f33774888037360adbbe31, type: 2}

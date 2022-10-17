@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET.Utility
@@ -234,6 +233,7 @@ namespace ET.Utility
     /// <summary>
     /// Native=>Unity client
     /// acknowledging client dj change
+    /// may not need after using MQ sync DJ
     /// </summary>
     public class DJChanged : JsonCmd
     {
@@ -255,8 +255,25 @@ namespace ET.Utility
 
     public class FireWorkGift : JsonCmd
     {
+        /// <summary>
+        /// who sent the gift
+        /// </summary>
         public int userId;
         
+        /// <summary>
+        /// how many 
+        /// </summary>
+        public int amount;
+        
+        /// <summary>
+        /// in how long
+        /// </summary>
+        public float duration;
+
+        /// <summary>
+        /// combo stage 
+        /// </summary>
+        public int comboStage;
     }
 
     public class PromoteRoom : JsonCmd
@@ -269,6 +286,51 @@ namespace ET.Utility
     }
 
     //先用原来的UserMsg处理UserChat
+
+    public class WheelFocus : JsonCmd
+    {
+        public int userId;
+        
+    }
+    
+    /// <summary>
+    /// this is the json command that should be sent from native client, and let native client tell unity
+    /// what volume should be set.
+    /// </summary>
+    public class SetClubSound : JsonCmd
+    {
+        /// <summary>
+        /// what volume we want unity zego change to. it's an integer, from 0 to 200.
+        /// normally 100 is the "full volume"
+        /// we only set it above 100 on special circumstances.
+        /// </summary>
+        public int targetVolume;
+        /// <summary>
+        /// it says "should volume be instantly changed to target volume?
+        /// if it's false, unity should do a tween to zego volume
+        /// or to say, unity should let volume gradually go to target volume
+        ///
+        /// if it's true, the volume would instanly changed.
+        /// in this circumstance, <paramref name="duration"/> would be useless.
+        /// </summary>
+        public bool bInstant;
+        /// <summary>
+        /// the tween duration in seconds.
+        /// e.x. user click "派对", and we can set target volume to 0, duration to 10 seconds
+        /// , bInstant to false. 
+        /// </summary>
+        public float duration;
+    }
+
+    public class fireworkstart : JsonCmd
+    {
+        
+    }
+
+    public class fireworkend : JsonCmd
+    {
+        
+    }
     
     #endregion
     

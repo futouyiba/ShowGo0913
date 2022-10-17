@@ -28,7 +28,7 @@ namespace ShowGo
 
         }
 
-        /*20220925 ÏÂÃæÊÇËÍÀñÎïßÚ»¨¹¦ÄÜ£¬ÎÒĞ´µÄ¹·ÊºÒ»Ñù*/
+        /*20220925 ä¸‹é¢æ˜¯é€ç¤¼ç‰©å‘²èŠ±åŠŸèƒ½ï¼Œæˆ‘å†™çš„ç‹—å±ä¸€æ ·*/
         private void InitFirework(int maxFireworkNum)
         {
             FireworkPool = new GameObject("FireworkPool");
@@ -45,8 +45,8 @@ namespace ShowGo
 
         public int FindFreeFirework(uint id)
         {
-            if (ActiveFireworkAndOwner.TryGetValue(id, out int index)) { return index; }//Íæ¼ÒÒÑ¾­ÓĞÊôÓÚËûµÄ»¹Ã»ÃğµÄÑÌ»¨ÁË£¬¾ÍÓÃÕâ¸ö
-            for (int i = 0; i < FireworkList.Count; i++)//¸øËûÕÒÒ»¸öÎ´»éÑÌ»¨
+            if (ActiveFireworkAndOwner.TryGetValue(id, out int index)) { return index; }//ç©å®¶å·²ç»æœ‰å±äºä»–çš„è¿˜æ²¡ç­çš„çƒŸèŠ±äº†ï¼Œå°±ç”¨è¿™ä¸ª
+            for (int i = 0; i < FireworkList.Count; i++)//ç»™ä»–æ‰¾ä¸€ä¸ªæœªå©šçƒŸèŠ± 
             {
                 if (!ActiveFireworkAndOwner.ContainsValue(i)) { return i; }
             }
@@ -80,7 +80,8 @@ namespace ShowGo
             int fireworkindex = FindFreeFirework(id);
             if (fireworkindex == -1) { return; }
             Firework firework = FireworkList[fireworkindex].GetComponent<Firework>();
-            //firework.transform.SetParent(NetworkClient.spawned[id].transform);
+            firework.transform.SetParent(SceneShowgoMgr.Instance.GetUser(id).transform);
+            firework.transform.localScale = new Vector3(1, 1, 1);
             firework.gameObject.transform.position = SceneShowgoMgr.Instance.GetUser(id).transform.Find("PlayerTop").position;
             firework.StartFirework();
             if (!ActiveFireworkAndOwner.ContainsKey(id)) { ActiveFireworkAndOwner.Add(id, fireworkindex); }
@@ -100,7 +101,7 @@ namespace ShowGo
                 if(VcamBehaviour.instance.PreviousVC == VcamBehaviour.instance.vCams[4]) VcamBehaviour.instance.LocalCameraChange(0);
             }
 
-            VcamBehaviour.instance.LocalCameraChange(0);
+            //VcamBehaviour.instance.LocalCameraChange(0);
             int fireworkindex;
             if (ActiveFireworkAndOwner.TryGetValue(id, out fireworkindex))
             {
@@ -113,10 +114,16 @@ namespace ShowGo
 
         }
 
-        IEnumerator FreeFirework(uint id)//ÓÃ»§³¤Ê±¼ä²»·ÅÑÌ»¨ËûµÄÑÌ»¨¾ÍÖØ»ñ×ÔÓÉ¿ÉÒÔÒÆÇé±ğÁµÁË£¬ÎªÉ¶ÕâÑù£¬ÒòÎªÈç¹ûÑÌ»¨¿ÉÒÔÁ¢¿ÌÒÆÇé±ğÁµ£¬Ëü»á´ø×ßÕâ¸öÓÃ»§»¨Ç®·Å³öµÄÖ½Ğ¼£¬¾ÍºÃÏñ£¬ÄãÀäÂäÆŞ×ÓÌ«¾ÃËı¸úÈËÅÜÁËÊÇ¿ÉÒÔµÄ£¬µ«ÊÇÈç¹ûÄãÁ©´òµÃ»ğÈÈËı¾ÍÅÜÁËËı¾ÍÊÇ¹ı´í·½ÁË£¬»òÕßËµÇÀ×ßËıµÄ¹·Í·ÈËÊÇ¹ı´í·½£¬±Ï¾¹ÔÚÎÒ´´ÔìµÄÊÀµÀÏÂÑÌ»¨Ö»ÊÇÈÎÈËß¢È¡µÄ¿É±¯ÍæÎï°ÕÁË£¨£¿
+        IEnumerator FreeFirework(uint id)//ç”¨æˆ·é•¿æ—¶é—´ä¸æ”¾çƒŸèŠ±ä»–çš„çƒŸèŠ±å°±é‡è·è‡ªç”±å¯ä»¥ç§»æƒ…åˆ«æ‹äº†ï¼Œä¸ºå•¥è¿™æ ·ï¼Œå› ä¸ºå¦‚æœçƒŸèŠ±å¯ä»¥ç«‹åˆ»ç§»æƒ…åˆ«æ‹ï¼Œå®ƒä¼šå¸¦èµ°è¿™ä¸ªç”¨æˆ·èŠ±é’±æ”¾å‡ºçš„çº¸å±‘ï¼Œå°±å¥½åƒï¼Œä½ å†·è½å¦»å­å¤ªä¹…å¥¹è·Ÿäººè·‘äº†æ˜¯å¯ä»¥çš„ï¼Œä½†æ˜¯å¦‚æœä½ ä¿©æ‰“å¾—ç«çƒ­å¥¹å°±è·‘äº†å¥¹å°±æ˜¯è¿‡é”™æ–¹äº†ï¼Œæˆ–è€…è¯´æŠ¢èµ°å¥¹çš„ç‹—å¤´äººæ˜¯è¿‡é”™æ–¹ï¼Œæ¯•ç«Ÿåœ¨æˆ‘åˆ›é€ çš„ä¸–é“ä¸‹çƒŸèŠ±åªæ˜¯ä»»äººæ’·å–çš„å¯æ‚²ç©ç‰©ç½¢äº†ï¼ˆï¼Ÿ
         {
-            yield return new WaitForSeconds(5.3f);//µÈ´ıÊ±¼äÊÇÊÖ²â³öÀ´µÄ
-            if (ActiveFireworkAndOwner.ContainsKey(id) && !FireworkList[ActiveFireworkAndOwner[id]].GetComponent<Firework>().FireworkParticle.IsAlive()) { ActiveFireworkAndOwner.Remove(id); Debug.Log("ÎÒ×ÔÓÉÀ±£¡£¡"); }
+            yield return new WaitForSeconds(5.3f);//ç­‰å¾…æ—¶é—´æ˜¯æ‰‹æµ‹å‡ºæ¥çš„
+            if (ActiveFireworkAndOwner.ContainsKey(id) && !FireworkList[ActiveFireworkAndOwner[id]].GetComponent<Firework>().FireworkParticle.IsAlive())
+            {
+                FireworkList[ActiveFireworkAndOwner[id]].transform.SetParent(FireworkPool.transform);
+                FireworkList[ActiveFireworkAndOwner[id]].transform.localScale = new Vector3(1, 1, 1);
+                ActiveFireworkAndOwner.Remove(id); 
+                Debug.Log("æˆ‘è‡ªç”±è¾£ï¼ï¼"); 
+            }
         }
     }
 

@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace AudioVisualizer
@@ -16,17 +14,20 @@ namespace AudioVisualizer
 
 
         public static AudioSampler instance; //singleton static instance
-        public List<AudioSource> audioSources; // list of audio sources used for audio input.
         public bool debug = false; // if true, show audio data being sampled
 
         // used for drawing the debug chart.
-        private Texture2D drawTexture; 
+        private Texture2D drawTexture;
         private Color startColor = Color.magenta;
         private Color endColor = Color.blue;
         private Gradient gradient;
         private float fMax;// = (float)AudioSettings.outputSampleRate/2;
         private List<string> debugLables = new List<string>() { "SubBass", "Bass", "LowMid", "Mid", "UpperMid", "High", "VeryHigh", "Decibal" };
         private int samplesToTake = 1024; // how many audio samples should we take?
+
+        public float[] spectrumSamples;
+        public float[] soundLevelSamples;
+        private int SampleIndex = 0;
 
         //singleton logic
         void OnEnable()
@@ -45,17 +46,8 @@ namespace AudioVisualizer
         {
             drawTexture = Texture2D.whiteTexture; // get an empty white texture
             gradient = PanelWaveform.GetColorGradient(startColor, endColor); // get a color gradient.
-            if (audioSources.Count == 0) // if we haven't assigned any audio sources
-            {
-                if (this.GetComponent<AudioSource>() != null) // try to grab one from this gameobject
-                {
-                    audioSources.Add(this.GetComponent<AudioSource>());
-                }
-                else
-                {
-                    Debug.LogError("Error! no audio sources attached to AudioSampler.css");
-                }
-            }
+            spectrumSamples = new float[samplesToTake];
+            soundLevelSamples = new float[samplesToTake];
         }
 
         void Start()
@@ -64,81 +56,74 @@ namespace AudioVisualizer
             fMax = (float)AudioSettings.outputSampleRate / 2;
         }
 
-
-   
-
-        //draw the debug chart if enabled.
-        void OnGUI()
+        public float GetVolume()
         {
-            if (debug)
+            float sum = 0;
+            for(int i = 0;i< soundLevelSamples.Length; i++)
             {
+                sum += soundLevelSamples[i];
+            }
+            return sum / soundLevelSamples.Length;
+        }
 
-                //rms
-                // avg
-                // 7 Frequency Range volumes
-                int heightPerSource = 100;
-                for (int s = 0; s < audioSources.Count; s++)
+        public void UpdateSample(float[] audioSpectrum)
+        {
+            //其实audioSpectrum.Length=64, samples长1024
+            
+            //for (int i = 0; i < audioSpectrum.Length; i++)//FFTWindow.BlackmanHarris
+            //{
+            //    audioSpectrum[i] = 0.35875f - (0.48829f * Mathf.Cos(1.0f * audioSpectrum[i] / audioSpectrum.Length)) + (0.14128f * Mathf.Cos(2.0f * audioSpectrum[i] / audioSpectrum.Length)) - (0.01168f * Mathf.Cos(3.0f * audioSpectrum[i] / audioSpectrum.Length));
+            //}
+            for (int i = 0; i <  audioSpectrum.Length; i++)//index不是按照时间分布而是按照频率分布的
+            {
+                
+                if (audioSpectrum[i] / (2 ^ 30) > 1)
                 {
-                    int width = (int)(Screen.width * .5f);
-                    int height = heightPerSource * (s + 1);
-                    int headerFooter = (int)(height * .2f);
-                    int spacing = (int)(width / debugLables.Count);
-                    int barWidth = 10;
-                    int yBottom = height - headerFooter;
-                    int yTop = headerFooter;
-                    int indent = 40; //left indent
-
-                    GUI.color = Color.white;
-                    GUI.Label(new Rect(0, yBottom, 60, 20), "Source: " + s);
-                    for (int j = 0; j < debugLables.Count; j++)
+                    for (int j = 0; j < spectrumSamples.Length / audioSpectrum.Length; j++)
                     {
-                        float percent = (float)j / (debugLables.Count - 1);
-                        int x = indent + spacing + spacing * j;
-                        Vector2 start = new Vector2(x, yBottom);
-                        float volume = Mathf.Clamp(GetFrequencyVol(s, (FrequencyRange)j) * 10, 0, .5f);
-                        float y = yBottom - heightPerSource * volume;
-                        //Debug.Log(i + " vol: " + volume + " y: " + y); 
-                        Vector2 end = new Vector2(x, y);
-                        DrawLine(start, end, barWidth, gradient.Evaluate(percent));
-                        GUI.Label(new Rect(x, yBottom, 60, 20), debugLables[j]);
-                        GUI.Label(new Rect(x, yBottom + 20, 40, 20), volume.ToString("F3"));
+                        spectrumSamples[i * spectrumSamples.Length / audioSpectrum.Length + j] = 1f;
+                    }
+                }
+                else if (audioSpectrum[i] / (2 ^ 30) < 1E-09)
+                {
+                    for (int j = 0; j < spectrumSamples.Length / audioSpectrum.Length; j++)
+                    {
+                        spectrumSamples[i * spectrumSamples.Length / audioSpectrum.Length + j] = 0f;
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < spectrumSamples.Length / audioSpectrum.Length; j++)
+                    {
+                        spectrumSamples[i * spectrumSamples.Length / audioSpectrum.Length + j] = audioSpectrum[i] / (2 ^ 30);
                     }
                 }
 
             }
+            
         }
-        //draw a line of the debug chart.
-        private void DrawLine(Vector2 start, Vector2 end, int width, Color color)
+
+        public void UpdateSoundLevel(float soundLevel)
         {
-            GUI.color = color;
-            Vector2 d = end - start;
-            float a = Mathf.Rad2Deg * Mathf.Atan(d.y / d.x);
-            if (d.x < 0)
-                a += 180;
-
-            int width2 = (int)Mathf.Ceil(width / 2);
-
-            if (Vector2.Distance(start, end) > .1)
+            if (SampleIndex >= samplesToTake)
             {
-                GUIUtility.RotateAroundPivot(a, start);
-                GUI.DrawTexture(new Rect(start.x, start.y - width2, d.magnitude, width), drawTexture);
-                GUIUtility.RotateAroundPivot(-a, start);
-            }
+                SampleIndex = 0;
+            }            
+            soundLevelSamples[SampleIndex] = soundLevel;
+            SampleIndex++;
         }
-
 
         //get an array of output data (decibals)
         public float[] GetAudioSamples(int audioSourceIndex)
         {
-            if (!audioSources[audioSourceIndex].mute) // if not muted
+            //if (!audioSources[audioSourceIndex].mute) // if not muted
             {
-                float[] samples = audioSources[audioSourceIndex].GetOutputData(samplesToTake, 0); // grab samples!
                 //normalize the samples
-                float[] normSamples = NormalizeArray(samples);
+                float[] normSamples = NormalizeArray(soundLevelSamples);
                 //multiply by volume.
-                for (int i = 0; i < samples.Length; i++)
+                for (int i = 0; i < soundLevelSamples.Length; i++)
                 {
-                    normSamples[i] = normSamples[i] * audioSources[audioSourceIndex].volume;
+                    normSamples[i] = normSamples[i] * 1;
                 }
                 return normSamples;
             }
@@ -149,21 +134,20 @@ namespace AudioVisualizer
         //get an array of output data, averaged into 'numBins' bins
         public float[] GetAudioSamples(int audioSourceIndex, int numBins, bool absoluteVal)
         {
-            if (!audioSources[audioSourceIndex].mute) // if not muted
+            //if (!audioSources[audioSourceIndex].mute) // if not muted
             {
-                float[] samples = audioSources[audioSourceIndex].GetOutputData(numBins, 0); // grab samples!
                 //normalize the samples
-                float[] normSamples = NormalizeArray(samples);
+                float[] normSamples = new float[numBins];
                 //multiply by volume.
-                for (int i = 0; i < samples.Length; i++)
+                for (int i = 0; i < numBins; i++)
                 {
                     if (absoluteVal)
                     {
-                        normSamples[i] = Mathf.Abs(samples[i]) * audioSources[audioSourceIndex].volume;
+                        normSamples[i] = Mathf.Abs(soundLevelSamples[i]) * 1;
                     }
                     else
                     {
-                        normSamples[i] = samples[i] * audioSources[audioSourceIndex].volume;
+                        normSamples[i] = soundLevelSamples[i] * 1;
                     }
                 }
 
@@ -177,7 +161,7 @@ namespace AudioVisualizer
         //sample the audio, square each value, and sum them all to get instant energy (the current 'energy' in the audio)
         public float GetInstantEnergy(int audioSourceIndex)
         {
-            if (!audioSources[audioSourceIndex].mute)
+            //if (!audioSources[audioSourceIndex].mute)
             {
                 float[] audioSamples = GetAudioSamples(audioSourceIndex);
                 float sum = 0;
@@ -186,7 +170,8 @@ namespace AudioVisualizer
                 {
                     sum += (f * f);
                 }
-                return sum * audioSources[audioSourceIndex].volume;
+                //return sum * audioSources[audioSourceIndex].volume;
+                return sum * 1;
             }
 
             return 0;
@@ -196,18 +181,17 @@ namespace AudioVisualizer
         //An average "noise" value of the audio at this point in time, using samplesToTake audio samples, and the passed in sensitivity.
         public float GetRMS(int audioSourceIndex)
         {
-            if (!audioSources[audioSourceIndex].mute)
+            //if (!audioSources[audioSourceIndex].mute)
             {
                 //grab output data (decibals)
-                float[] audioSamples = audioSources[audioSourceIndex].GetOutputData(samplesToTake, 0); // fill array with samples
                 //float[] normSamples = NormalizeArray(audioSamples);
                 int i;
                 float sum = 0;
                 for (i = 0; i < samplesToTake; i++)
                 {
-                    sum += audioSamples[i] * audioSamples[i]; // sum squared samples
+                    sum += soundLevelSamples[i] * soundLevelSamples[i]; // sum squared samples
                 }
-                float rmsValue = Mathf.Sqrt(sum / samplesToTake) * audioSources[audioSourceIndex].volume; // rms = square root of average
+                float rmsValue = Mathf.Sqrt(sum / samplesToTake) * 1; // rms = square root of average
 
                 return rmsValue;
             }
@@ -218,14 +202,13 @@ namespace AudioVisualizer
         //like GetAvg or GetRMS, but inside a given frequency range
         public float GetFrequencyVol(int audioSourceIndex, FrequencyRange freqRange)
         {
-            if (!audioSources[audioSourceIndex].mute) // if not muted
+            //if (!audioSources[audioSourceIndex].mute) // if not muted
             {
                 Vector2 range = GetFreqForRange(freqRange);
                 float fLow = range.x;//Mathf.Clamp (range.x, 20, fMax); // limit low...
                 float fHigh = range.y;//Mathf.Clamp (range.y, fLow, fMax); // and high frequencies
                 // get spectrum
-                float[] freqData = new float[samplesToTake];
-                audioSources[audioSourceIndex].GetSpectrumData(freqData, 0, FFTWindow.BlackmanHarris);
+                float[] freqData = spectrumSamples;
                 int n1 = (int)Mathf.Floor(fLow * samplesToTake / fMax);
                 int n2 = (int)Mathf.Floor(fHigh * samplesToTake / fMax);
                 float sum = 0;
@@ -233,10 +216,10 @@ namespace AudioVisualizer
                 // average the volumes of frequencies fLow to fHigh
                 for (int i = n1; i <= n2; i++)
                 {
-                    if(i < freqData.Length)
+                    if (i < freqData.Length)
                         sum += Mathf.Abs(freqData[i]);
                 }
-                sum = sum * audioSources[audioSourceIndex].volume;
+                sum = sum * 1;
                 return sum / (n2 - n1 + 1);
             }
 
@@ -246,14 +229,13 @@ namespace AudioVisualizer
         //return the raw spectrum data i nthe given frequency range.
         public float[] GetFrequencyData(int audioSourceIndex, FrequencyRange freqRange)
         {
-            if (!audioSources[audioSourceIndex].mute) // if not muted
+            //if (!audioSources[audioSourceIndex].mute) // if not muted
             {
                 Vector2 range = GetFreqForRange(freqRange);
                 float fLow = range.x;//Mathf.Clamp (range.x, 20, fMax); // limit low...
                 float fHigh = range.y;//Mathf.Clamp (range.y, fLow, fMax); // and high frequencies
                 // get spectrum
-                float[] freqData = new float[samplesToTake];
-                audioSources[audioSourceIndex].GetSpectrumData(freqData, 0, FFTWindow.BlackmanHarris);
+                float[] freqData = spectrumSamples;
                 int n1 = (int)Mathf.Floor(fLow * samplesToTake / fMax);
                 int n2 = (int)Mathf.Floor(fHigh * samplesToTake / fMax);
                 float sum = 0;
@@ -263,7 +245,7 @@ namespace AudioVisualizer
                 List<float> validData = new List<float>();
                 for (int i = n1; i <= n2; i++)
                 {
-                    validData.Add(freqData[i] * audioSources[audioSourceIndex].volume);
+                    validData.Add(freqData[i] * 1);
                 }
 
                 float[] normData = NormalizeArray(validData.ToArray());
@@ -278,14 +260,13 @@ namespace AudioVisualizer
         //return the raw spectrum data i nthe given frequency range, using the specified number of bins
         public float[] GetFrequencyData(int audioSourceIndex, FrequencyRange freqRange, int numBins, bool abs)
         {
-            if (!audioSources[audioSourceIndex].mute) // if not muted
+            //if (!audioSources[audioSourceIndex].mute) // if not muted
             {
                 Vector2 range = GetFreqForRange(freqRange);
                 float fLow = range.x;//Mathf.Clamp (range.x, 20, fMax); // limit low...
                 float fHigh = range.y;//Mathf.Clamp (range.y, fLow, fMax); // and high frequencies
                 // get spectrum
-                float[] freqData = new float[samplesToTake];
-                audioSources[audioSourceIndex].GetSpectrumData(freqData, 0, FFTWindow.BlackmanHarris);
+                float[] freqData = spectrumSamples;
                 int n1 = (int)Mathf.Floor(fLow * samplesToTake / fMax);
                 int n2 = (int)Mathf.Floor(fHigh * samplesToTake / fMax);
                 float sum = 0;
@@ -302,7 +283,7 @@ namespace AudioVisualizer
                         frequency = Mathf.Abs(freqData[i]);
                     }
 
-                    validData.Add(frequency * audioSources[audioSourceIndex].volume);
+                    validData.Add(frequency * 1);
                 }
 
                 float[] binnedArray = GetBinnedArray(validData.ToArray(), numBins);
@@ -321,17 +302,17 @@ namespace AudioVisualizer
         {
             float[] output = new float[numBins];
 
-            if(numBins == input.Length)
+            if (numBins == input.Length)
             {
                 return input;
             }
             // if numBins is > intput.Length, duplicate input values
-            if(numBins > input.Length)
+            if (numBins > input.Length)
             {
-                int binsPerInput = numBins/input.Length;
-                for(int b = 0; b < numBins; b++) 
+                int binsPerInput = numBins / input.Length;
+                for (int b = 0; b < numBins; b++)
                 {
-                    int inputIndex = (b+1)%binsPerInput;
+                    int inputIndex = (b + 1) % binsPerInput;
                     output[b] = input[inputIndex];
                 }
             }
@@ -339,7 +320,7 @@ namespace AudioVisualizer
             // if numBins is < input.Length, average input values
             if (numBins < input.Length)
             {
-                int inputsPerBin = input.Length/numBins;
+                int inputsPerBin = input.Length / numBins;
                 for (int b = 0; b < numBins; b++)
                 {
                     float avg = 0;
@@ -427,3 +408,4 @@ namespace AudioVisualizer
 
 
 }
+

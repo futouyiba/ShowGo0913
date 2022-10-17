@@ -68,7 +68,51 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  DJIdInput: -1
   testMyInfo2Input: "{\"code\":0,\"dataInfo\":{\"background\":\"\",\"black\":false,\"bloodType\":\"\",\"chatBubbleId\":0,\"city\":\"\u5317\u4EAC\",\"clickNum\":0,\"color\":\"\",\"contractInfoBeans\":[],\"createTime\":1654591893000,\"creditLevel\":6,\"creditScore\":100000,\"currentIntoVoiceTips\":\"\",\"currentRoomInfo\":null,\"deleteUserId\":0,\"disturb\":false,\"examineIntoVoiceTips\":\"\",\"examineState\":0,\"freeNum\":1,\"friendState\":0,\"gisX\":\"\",\"gisY\":\"\",\"headPic\":\"user/0b7e7b7ba498455bbd31ba23944e09c6.png\",\"headgearId\":0,\"height\":\"\",\"integral\":0,\"integralPlay\":0,\"integrity\":100,\"labels\":\"\",\"labelsILike\":\"\",\"lastActiveTime\":1654591893405,\"levelList\":[],\"loginId\":0,\"milepostState\":false,\"newUser\":false,\"nickName\":\"\u963F\u534A\u0E05\u06F6\u2022\uFECC\u2022\u2661\",\"online\":false,\"onlineHidden\":false,\"picList\":[{\"index\":1,\"picUrl\":\"group1/M00/42/E0/wKgACmF7r1yEDPJVAAAAAGQ4M5M310.jpg\",\"verifyState\":2}],\"professional\":\"\",\"relation\":false,\"sex\":2,\"surfing\":530625,\"toFriendState\":0,\"userDesc\":\"\u6211\u4E5F\u592A\u53EF\u7231\u4E86\u5427\uFF01\",\"userId\":840254,\"userRevenueGoodsList\":[],\"userRoomInfo\":null,\"userState\":1,\"userType\":2,\"voiceTime\":0,\"weight\":\"\"},\"timestamp\":1663849622149}"
+--- !u!1 &6115503975738521812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8806850922673066240}
+  - component: {fileID: 1339794467344008444}
+  m_Layer: 0
+  m_Name: TimerComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8806850922673066240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115503975738521812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8875081060569260283}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1339794467344008444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115503975738521812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d04d0bd41f6522b43bdbe704d739ba20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8875081060569260039
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +144,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1642818023}
+  - {fileID: 8806850922673066240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,8 +164,8 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: Assets/Scenes/ShowGoOffline.unity
-  onlineScene: Assets/Scenes/ShowGoLiveFork.unity
+  offlineScene: 
+  onlineScene: 
   transport: {fileID: 2773741503108840832}
   networkAddress: 120.27.233.235
   maxConnections: 9999
@@ -131,8 +176,6 @@ MonoBehaviour:
   spawnPrefabs: []
   bIsServer: 1
   autoServerAddress: 120.27.233.235
-  updateReconnectInterval: 0
-  checkAccumulatedTime: 0
 --- !u!114 &2773741503108840832
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -11,39 +10,37 @@ namespace ET
         public float Duration;
         public List<Transform > Targets;
         public bool Punching = false;
-        private Vector3 OgScale;
 
         public bool SelfPunching = false;
         public float ReactGain;
         public bool Beat = false;
 
-
-        public AudioSamplerTest MusicSampler;
-
         public float SelfRotateVelocity=5f;
         public bool Boosting = false;
         private float BoostingTime = 0.8f;
 
+        public int RotateDirection=1;
 
-        // Start is called before the first frame update
+        public bool isSpeaker=false;
+
         void Start()
         {
             for (int i = 0; i < this.transform.childCount; i++)
             {
                 Targets.Add(this.transform.GetChild(i));
             }
-            OgScale = Targets[0].transform.localScale;
+
         }
 
         void Update()
         {
             SelfScaleReact();
-            SelfRotate(SelfRotateVelocity);
+            if(!isSpeaker)SelfRotate(SelfRotateVelocity);//���첻ת 
         }
 
         public void SelfRotate(float velocity)
         {
-            transform.rotation *= Quaternion.Euler(0f, velocity * Time.deltaTime, 0f);
+            transform.rotation *= Quaternion.Euler(0f, velocity * Time.deltaTime* RotateDirection, 0f);
         }
 
         public void SelfRotateBoost()
@@ -58,53 +55,33 @@ namespace ET
             Boosting = false;
         }
 
-        public void ScaleReact()
-        {
-            //if (!Punching)
-            {
-                Punching = true;
-                foreach (Transform t in Targets)
-                {
-                    //Tweener s = t.transform.DOPunchScale(new Vector3(Gain, Gain, Gain), Duration).OnKill(() => { Punching = false; });
-                    //Tweener s = t.transform.DOShakeScale(Duration, new Vector3(Gain, Gain, Gain), 10, 90f, true).OnKill(() => { Punching = false; });
-                    //s.Play();
-                    //t.transform.DOPunchScale(new Vector3(Gain, Gain, Gain), Duration);
-                    //t.transform.DOShakeScale(Duration, new Vector3(Gain, Gain, Gain), 10, 90f, true);
-                    t.transform.DOPunchScale(new Vector3(-Gain, -Gain, -Gain), Duration, 20, 0).OnKill(() => { t.localScale = OgScale; });
-                    //t.transform.DOPunchScale(new Vector3(-Gain, -Gain, -Gain), Duration, 10, 0.5f).OnKill(() => { Punching = false; });
-                }
-            }
-            
-        }
-
         private void SelfScaleReact()
         {
-            float v = MusicSampler.GetVolume();
-            if (v == 0) { return; }
+            float v = AudioVisualizer.AudioSampler.instance.GetVolume();
+            if (v <= 0) { return; }
             if (!SelfPunching)
             {
                 SelfPunching = true;
                 foreach (Transform t in Targets)
                 {
-                    //Tweener s = t.transform.DOPunchScale(new Vector3(Gain, Gain, Gain), Duration).OnKill(() => { Punching = false; });
-                    //Tweener s = t.transform.DOShakeScale(Duration, new Vector3(Gain, Gain, Gain), 10, 90f, true).OnKill(() => { Punching = false; });
-                    //s.Play();
-                    //t.transform.DOPunchScale(new Vector3(Gain, Gain, Gain), Duration);
-                    //t.transform.DOShakeScale(Duration, new Vector3(Gain, Gain, Gain), 10, 90f, true);
-                    
                     if (!Beat)
                     {
-                        if (v > 2) v = 2f;
-                        if (v < 1) v = 1f;
-                        t.transform.DOPunchScale(new Vector3(-Gain * v, -Gain * v, -Gain * v), Duration, 12, 0).OnKill(() => { SelfPunching = false; });
+                        if (v > 0.1f) v = 2f;
+                        else if (v < 0.04f) v = 1f;
+                        else v = 1f + v * 10f;
+                        Vector3 ogscale=t.localScale;
+                        if (!isSpeaker) t.transform.DOPunchScale(ogscale*-Gain*v, Duration, 12, 0).OnKill(() => { SelfPunching = false; });
+                        else t.transform.DOPunchScale(ogscale * Gain * v, Duration, 6, 0).OnKill(() => { SelfPunching = false; });
                     }
                     else
                     {
-                        if (v > 2) v = 2f;
-                        if (v < 1) v = 1f;
-                        t.transform.DOPunchScale(new Vector3(-ReactGain * v, -ReactGain * v, -ReactGain * v), Duration, 12, 0.2f).OnKill(() => { SelfPunching = false; });
+                        if (v > 0.1f) v = 2f;
+                        else if (v < 0.04f) v = 1f;
+                        else v = 1f + v * 10f;
+                        Vector3 ogscale = t.localScale;
+                        if (!isSpeaker) t.transform.DOPunchScale(ogscale * -ReactGain * v, Duration, 12, 0.2f).OnKill(() => { SelfPunching = false; });
+                        else t.transform.DOPunchScale(ogscale * ReactGain * v, Duration, 6, 0.2f).OnKill(() => { SelfPunching = false; });
                     }
-                    //t.transform.DOPunchScale(new Vector3(-Gain, -Gain, -Gain), Duration, 10, 0.5f).OnKill(() => { Punching = false; });
                 }
                 Beat = false;
             }
